@@ -142,9 +142,19 @@ class Cantina{
         return results;
     }
 
-    addSubBottles(code, bottles){
+    addBottles(code, bottles){
         let target = cantina.searchProduct("Codice", code)
         target.quantity += bottles;
+    }
+    
+    subtractBottles(code, bottles){
+        let target = cantina.searchProduct("Codice", code)
+        const newValue = target.quantity - bottles;
+        if (newValue < 0) {
+            return "accidenti";
+        } else {
+            target.quantity += bottles
+        }
     }
 
     checkQuantity(code){
